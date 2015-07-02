@@ -6,14 +6,16 @@ use warnings;
 use Exporter qw(import);
 use File::Path qw(make_path);
 use Nmap::Parser;
+use File::Basename qw(basename);
 
 our $VERSION = '0.01';
 
-our @EXPORT = qw(set_vars do_basescan print_basescan email_diffs print_diffs);
+our @EXPORT = qw(list_basescans set_vars do_basescan print_basescan email_diffs print_diffs);
 
 my $scan_name;
 my $nmap_exe;
 my $verbose;
+my $base_dir = "$ENV{HOME}/.monport";
 my $path;
 my $base_file;
 
@@ -22,7 +24,7 @@ sub set_vars {
 
     $scan_name =~ s/\s+/_/g;
 
-    $path      = "$ENV{HOME}/.monport/$scan_name";
+    $path      = "$base_dir/$scan_name";
     $base_file = "$path/base.xml";
 }
 
@@ -32,6 +34,13 @@ sub email_diffs {
 
 sub print_diffs {
     print get_diffs();
+}
+
+sub list_basescans {
+    for my $dir (glob "$base_dir/*") {
+        (my $name = basename $dir) =~ s/_/ /g;
+        print "$name\n";
+    }
 }
 
 sub get_basescan_opts_and_args {
