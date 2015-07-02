@@ -15,11 +15,10 @@ sub opt_spec {
 sub validate_args {
   my ($self, $opt, $args) = @_;
 
-
   if ( $opt->print ) {
       # We don't need arguments for --print
   } else {
-      $self->usage_error("too few arguments") unless @$args;
+      $self->usage_error("no target(s) to scan") unless @$args;
   }
 }
 
