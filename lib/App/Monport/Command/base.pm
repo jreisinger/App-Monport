@@ -5,14 +5,14 @@ use App::Monport::Nmap;
 
 sub usage_desc { "base %o <target> [<target2> <target3> ... <targetN>]" }
 
-sub opt_spec {
+sub options {
   return (
-    [ "print|p",  "print base scan(s) results", ],
     [ "nmapopts|o=s@",  "nmap options", { default => [ "-Pn" ] } ],
+    [ "print|p",  "print base scan(s) results", ],
   );
 }
 
-sub validate_args {
+sub validate {
   my ($self, $opt, $args) = @_;
 
   if ( $opt->print ) {

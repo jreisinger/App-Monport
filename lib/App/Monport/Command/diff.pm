@@ -5,9 +5,9 @@ use App::Monport::Nmap;
 
 sub usage_desc { "base %o <target> [<target2> <target3> ... <targetN>]" }
 
-sub opt_spec {
+sub options {
   return (
-    [ "email|e=s@",  "send differences via email instead of printing them to stdout", ],
+    [ "email|e=s@", "send differences via email instead of printing them to stdout", ],
   );
 }
 
@@ -19,6 +19,10 @@ sub execute {
   } else {
       print_diffs();
   }
+}
+
+sub validate {
+    return "bla";
 }
 
 1;
