@@ -7,9 +7,9 @@ sub usage_desc { "base %o <target> [<target2> <target3> ... <targetN>]" }
 
 sub options {
   return (
-    [ "nmapopts|o=s@",  "nmap options (default: '-Pn')", { default => [ "-Pn" ] } ],
+    [ "nmapopts|o=s@", "nmap options" ],
     [ "list|l", "list existing base scan names" ],
-    [ "print|p",  "print base scan(s) results (default: 'noname')", ],
+    [ "print|p",  "print base scan results" ],
   );
 }
 
@@ -26,7 +26,7 @@ sub validate {
 sub execute {
   my ($self, $opt, $args) = @_;
 
-  set_vars($opt->name, $opt->nmapexe, $opt->verbose);
+  set_vars($opt->name, $opt->nmapexe);
 
   if ($opt->print) {
       print_basescan();

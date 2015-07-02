@@ -7,7 +7,6 @@ sub opt_spec {
     [ 'help|h', "this usage screen" ],
     [ 'name|n=s', "name of the scan (default: 'noname')", { default => "noname" } ],
     [ 'nmapexe|e=s', "nmap executable (default: '/usr/bin/nmap')", { default => "/usr/bin/nmap" } ],
-    [ 'verbose|v', "be verbose" ],
     $class->options($app),
   )
 }

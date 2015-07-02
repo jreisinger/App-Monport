@@ -14,13 +14,12 @@ our @EXPORT = qw(list_basescans set_vars do_basescan print_basescan email_diffs 
 
 my $scan_name;
 my $nmap_exe;
-my $verbose;
 my $base_dir = "$ENV{HOME}/.monport";
 my $path;
 my $base_file;
 
 sub set_vars {
-    ($scan_name, $nmap_exe, $verbose) = @_;
+    ($scan_name, $nmap_exe) = @_;
 
     $scan_name =~ s/\s+/_/g;
 
@@ -52,7 +51,7 @@ sub get_basescan_opts_and_args {
         if ( $part =~ /^\-/ ) {
             next if $part eq "-oX";
             push @$nmap_opts, $part;
-        } elsif ( not $part =~ /\// ) {
+        } elsif ( not $part =~ /^\// ) {
             push @$targets, $part;
         }
     }
@@ -112,13 +111,12 @@ sub get_diffs {
 sub do_basescan {
     my ( $nmapopts, $targets ) = @_;
 
-    print "--> Doing the base scan ...\n" if $verbose;
     make_path $path if not -d $path;
     if ( -e $base_file ) {
         die
           "Base scan for '$scan_name' has already been done ($base_file), exiting ...\n";
     } else {
-        system "$nmap_exe @$nmapopts -oX $base_file @$targets > /dev/null";
+        system "$nmap_exe @$nmapopts -oX $base_file @$targets";
     }
 }
 
