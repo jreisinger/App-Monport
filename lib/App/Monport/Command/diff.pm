@@ -14,6 +14,8 @@ sub options {
 sub execute {
   my ($self, $opt, $args) = @_;
 
+  set_vars($opt->name, $opt->nmapexe, $opt->verbose);
+
   if ($opt->email) {
       email_diffs(@{$opt->email});
   } else {

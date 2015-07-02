@@ -4,7 +4,10 @@ use App::Cmd::Setup -command;
 sub opt_spec {
   my ( $class, $app ) = @_;
   return (
-    [ 'help|h' => "this usage screen" ],
+    [ 'help|h', "this usage screen" ],
+    [ 'name|n=s', "name of the scan (default: 'noname')", { default => "noname" } ],
+    [ 'nmapexe|e=s', "nmap executable (default: '/usr/bin/nmap')", { default => "/usr/bin/nmap" } ],
+    [ 'verbose|v', "be verbose" ],
     $class->options($app),
   )
 }

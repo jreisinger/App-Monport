@@ -7,15 +7,24 @@ use Exporter qw(import);
 use File::Path qw(make_path);
 use Nmap::Parser;
 
-our @EXPORT = qw(do_basescan print_basescan email_diffs print_diffs);
-
-my $nmap_exe  = "/usr/bin/nmap";
-my $scan_name = "noname";
-my $path      = "$ENV{HOME}/.monport/$scan_name";
-my $base_file = "$path/base.xml";
-my $verbose   = 1;
-
 our $VERSION = '0.01';
+
+our @EXPORT = qw(set_vars do_basescan print_basescan email_diffs print_diffs);
+
+my $scan_name;
+my $nmap_exe;
+my $verbose;
+my $path;
+my $base_file;
+
+sub set_vars {
+    ($scan_name, $nmap_exe, $verbose) = @_;
+
+    $scan_name =~ s/\s+/_/g;
+
+    $path      = "$ENV{HOME}/.monport/$scan_name";
+    $base_file = "$path/base.xml";
+}
 
 sub email_diffs {
 
