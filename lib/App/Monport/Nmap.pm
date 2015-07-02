@@ -22,7 +22,7 @@ sub email_diffs {
 }
 
 sub print_diffs {
-    get_diffs();
+    print get_diffs();
 }
 
 sub get_basescan_opts_and_args {
@@ -38,6 +38,7 @@ sub get_basescan_opts_and_args {
             push @$targets, $part;
         }
     }
+
     return $nmap_opts, $targets;
 }
 
@@ -50,6 +51,7 @@ sub get_diffs {
 
     $curr->parsescan( $nmap_exe, @$nmap_opts, @$targets );   #scan current hosts
 
+    my $msg = "";
     for my $ip ( $curr->get_ips ) {
 
         #assume that IPs in base == IPs in curr scan
@@ -71,19 +73,22 @@ sub get_diffs {
             else                        { '' }
         };
 
-        print "$ip ($hostname) has changes in port(s) state\n" if @diff;
-        for my $port (@diff) {
-            my $servicename = $ip_curr->tcp_service($port)->name // '';
-            my $state = do {
-                if ( grep $port eq $_, $ip_curr->tcp_open_ports ) {
-                    'not-open => open';
-                } else {
-                    'open => not-open';
-                }
-            };
-            print "  $port ($servicename) -- $state\n";
+        if (@diff) {
+            $msg .= "$ip ($hostname) has changes in port(s) state\n";
+            for my $port (@diff) {
+                my $servicename = $ip_curr->tcp_service($port)->name // '';
+                my $state = do {
+                    if ( grep $port eq $_, $ip_curr->tcp_open_ports ) {
+                        'not-open => open';
+                    } else {
+                        'open => not-open';
+                    }
+                };
+                $msg .= "  $port ($servicename) -- $state\n";
+            }
         }
     }
+    return $msg;
 }
 
 sub do_basescan {
