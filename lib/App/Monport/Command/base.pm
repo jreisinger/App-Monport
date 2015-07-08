@@ -1,4 +1,4 @@
-# ABSTRACT: create base(line) scan for future comparisons
+# ABSTRACT: Create or show base(line) scans. They are used for future comparisons.
 package App::Monport::Command::base;
 use App::Monport -command;
 use App::Monport::Nmap;
