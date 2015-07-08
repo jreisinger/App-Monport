@@ -9,13 +9,13 @@ App::Monport - Monitor network ports for changes
 
 To install this module, run the following commands:
 
-	perl Build.PL
-	./Build
-	./Build test
-	./Build install
+ perl Build.PL
+ ./Build
+ ./Build test
+ ./Build install
 
 =head1 SYNOPSIS
 
-  monport
+ monport
 
 1;
