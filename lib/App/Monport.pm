@@ -3,7 +3,7 @@ use App::Cmd::Setup -app;
 
 =head1 NAME
 
-App::Monport - Monitor network ports for changes
+App::Monport - monitor network ports for changes
 
 =head1 INSTALLATION
 
