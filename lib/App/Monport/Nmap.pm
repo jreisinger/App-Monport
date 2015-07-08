@@ -13,9 +13,10 @@ our $VERSION = '0.01';
 our @EXPORT =
   qw(list_basescans set_vars do_basescan print_basescan email_diffs print_diffs);
 
+my $base_dir = "$ENV{HOME}/.monport";
+
 my $scan_name;
 my $nmap_exe;
-my $base_dir = "$ENV{HOME}/.monport";
 my $path;
 my $base_file;
 
