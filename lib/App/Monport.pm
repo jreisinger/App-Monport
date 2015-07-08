@@ -18,4 +18,6 @@ To install this module, run the following commands:
 
  monport
 
+=cut
+
 1;
