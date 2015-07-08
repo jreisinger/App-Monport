@@ -16,6 +16,8 @@ To install this module, run the following commands:
 
 =head1 SYNOPSIS
 
+Run this to see available sub-commands (use -h to get help):
+
  monport
 
 =cut
