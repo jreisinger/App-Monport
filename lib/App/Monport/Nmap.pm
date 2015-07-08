@@ -10,7 +10,8 @@ use File::Basename qw(basename);
 
 our $VERSION = '0.01';
 
-our @EXPORT = qw(list_basescans set_vars do_basescan print_basescan email_diffs print_diffs);
+our @EXPORT =
+  qw(list_basescans set_vars do_basescan print_basescan email_diffs print_diffs);
 
 my $scan_name;
 my $nmap_exe;
@@ -19,7 +20,7 @@ my $path;
 my $base_file;
 
 sub set_vars {
-    ($scan_name, $nmap_exe) = @_;
+    ( $scan_name, $nmap_exe ) = @_;
 
     $scan_name =~ s/\s+/_/g;
 
@@ -36,8 +37,8 @@ sub print_diffs {
 }
 
 sub list_basescans {
-    for my $dir (glob "$base_dir/*") {
-        (my $name = basename $dir) =~ s/_/ /g;
+    for my $dir ( glob "$base_dir/*" ) {
+        ( my $name = basename $dir) =~ s/_/ /g;
         print "$name\n";
     }
 }
@@ -110,6 +111,7 @@ sub get_diffs {
 
 sub do_basescan {
     my ( $nmapopts, $targets ) = @_;
+    $nmapopts = [] unless $nmapopts;    # so that we don't get warning
 
     make_path $path if not -d $path;
     if ( -e $base_file ) {
