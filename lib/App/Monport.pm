@@ -37,12 +37,14 @@ To install this module, run:
 
  $ cpanm App::Monport
 
- when using L<App::cpanminus>. Of course you can use your favorite CPAN client
- or install manually by cloning the L</"SOURCE REPOSITORY"> and then running:
+when using L<App::cpanminus>. Of course you can use your favorite CPAN client
+or install manually by cloning the L</"SOURCE REPOSITORY"> and then running:
 
  perl Build.PL
  ./Build
  ./Build test
  ./Build install
+
+=cut
 
 1;
