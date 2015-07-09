@@ -22,6 +22,13 @@ my $builder = Module::Build->new(
     },
     add_to_cleanup     => ['App-Monport-*'],
     create_makefile_pl => 'traditional',
+    meta_merge         => {
+        resources => {
+            repository => "http://github.com/jreisinger/App-Monport",
+            bugtracker => "http://github.com/jreisinger/App-Monport/issues",
+        },
+        no_index => { file => ['README.pod'], },
+    }
 );
 
 $builder->create_build_script();
