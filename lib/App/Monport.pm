@@ -1,7 +1,7 @@
 package App::Monport;
 use App::Cmd::Setup -app;
 
-our $VERSION = '0.02';
+our $VERSION = '0.03';
 
 =head1 NAME
 
