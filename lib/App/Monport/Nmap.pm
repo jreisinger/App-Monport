@@ -7,6 +7,7 @@ use Exporter qw(import);
 use File::Path qw(make_path);
 use Nmap::Parser;
 use File::Basename qw(basename);
+use Sys::Hostname qw(hostname);
 
 our $VERSION = '0.01';
 
@@ -30,7 +31,76 @@ sub set_vars {
 }
 
 sub email_diffs {
+    my @email_addresses = @_;
+    sendMail($_, "monport - $scan_name", get_diffs()) for  @email_addresses;
+}
 
+=head2 loadModule( $module )
+
+Try to load a $module at runtime. Return 1 on success 0 otherwise. $module can
+be 'Module::Name' or 'Module/Name.pm'.
+
+Loading error is stored in C<$@> and can propagate to die() if die() is
+use without arguments:
+
+    loadModule( $module ) or die;
+
+=cut
+
+sub loadModule {
+    my $module = shift;
+
+    # require doesn't work with Module::Name stored in a variable so we turn it
+    # into Module/Name.pm
+    $module = File::Spec->catfile( split( /::/, $module ) ) . '.pm'
+      if $module =~ /::/;
+
+    eval {
+        require $module;
+        $module->import;
+        1;
+    };
+
+    if ($@) {
+
+        #print STDERR "Failed to load $module because: $@";
+        return 0;
+    } else {
+        return 1;
+    }
+}
+
+sub sendMail {
+    my ( $receiver, $subject, $mail_body ) = @_;
+
+    # We need these modules
+    my @modules = qw( Email::MIME Email::Sender::Simple );
+    for (@modules) {
+        loadModule($_) or die;
+    }
+
+    # sender will the user running the program
+    my $host  = hostname;
+    my $login = getlogin || getpwuid($<) || "uknown";
+    my $from  = "$login\@$host";
+
+    # first, create your message
+    my $message = Email::MIME->create(
+        header_str => [
+            From    => $from,
+            To      => $receiver,
+            Subject => $subject,
+        ],
+        attributes => {
+            encoding => 'quoted-printable',
+            charset  => 'utf-8',
+        },
+        body_str => $mail_body,
+    );
+
+    # send the message
+    use Email::Sender::Simple qw(sendmail);
+    sendmail($message);
 }
 
 sub print_diffs {
