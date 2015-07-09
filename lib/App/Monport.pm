@@ -49,6 +49,17 @@ or install manually by cloning the L</"SOURCE REPOSITORY"> and then running:
 
 L<http://github.com/jreisinger/App-Monport>
 
+=head1 AUTHOR
+
+Jozef Reisinger, E<lt>reisinge@cpan.orgE<gt>
+
+=head1 COPYRIGHT AND LICENSE
+
+Copyright (C) 2015 by Jozef Reisinger
+
+This library is free software; you can redistribute it and/or modify
+it under the same terms as Perl itself.
+
 =cut
 
 1;
