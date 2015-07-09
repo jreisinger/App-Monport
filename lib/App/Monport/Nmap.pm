@@ -32,7 +32,11 @@ sub set_vars {
 
 sub email_diffs {
     my @email_addresses = @_;
-    sendMail($_, "monport - $scan_name", get_diffs()) for  @email_addresses;
+
+    my $diffs = get_diffs();
+    if ($diffs) {
+        sendMail( $_, "monport - $scan_name", $diffs ) for @email_addresses;
+    }
 }
 
 =head2 loadModule( $module )
