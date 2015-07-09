@@ -45,9 +45,9 @@ or install manually by cloning the L</"SOURCE REPOSITORY"> and then running:
  ./Build test
  ./Build install
 
- =head1 SOURCE REPOSITORY
+=head1 SOURCE REPOSITORY
 
- L<http://github.com/jreisinger/App-Monport>
+L<http://github.com/jreisinger/App-Monport>
 
 =cut
 
