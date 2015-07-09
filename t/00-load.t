@@ -4,10 +4,11 @@ use strict;
 use warnings FATAL => 'all';
 use Test::More;
 
-plan tests => 1;
+plan tests => 2;
 
 BEGIN {
+    use_ok( 'App::Monport' ) || print "Bail out!\n";
     use_ok( 'App::Monport::Nmap' ) || print "Bail out!\n";
 }
 
-diag( "Testing App::Monport::Nmap $App::Monport::Nmap::VERSION, Perl $], $^X" );
+diag( "Testing App::Monport, $App::Monport::VERSION, Perl $], $^X" );

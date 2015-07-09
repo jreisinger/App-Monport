@@ -9,8 +9,6 @@ use Nmap::Parser;
 use File::Basename qw(basename);
 use Sys::Hostname qw(hostname);
 
-our $VERSION = '0.01';
-
 our @EXPORT =
   qw(list_basescans set_vars do_basescan print_basescan email_diffs print_diffs);
 

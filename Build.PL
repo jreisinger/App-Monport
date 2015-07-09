@@ -4,22 +4,23 @@ use warnings;
 use Module::Build;
 
 my $builder = Module::Build->new(
-    module_name         => 'App::Monport',
-    license             => 'artistic_2',
-    dist_author         => q{Jozef Reisinger <reisinge@cpan.org>},
-    dist_version_from   => 'lib/App/Monport.pm',
-    release_status      => 'stable',
-    configure_requires => {
-        'Module::Build' => 0,
-    },
-    build_requires => {
-        'Test::More' => 0,
-    },
-    requires => {
+    module_name        => 'App::Monport',
+    license            => 'artistic_2',
+    dist_author        => q{Jozef Reisinger <reisinge@cpan.org>},
+    dist_version_from  => 'lib/App/Monport.pm',
+    release_status     => 'stable',
+    configure_requires => { 'Module::Build' => 0, },
+    build_requires     => { 'Test::More' => 0, },
+    requires           => {
+
         #'ABC'              => 1.6,
         #'Foo::Bar::Module' => 5.0401,
+        'Email::MIME'           => 0,
+        'App::Cmd::Setup'       => 0,
+        'Email::Sender::Simple' => 0,
+        'Nmap::Parser'          => 0,
     },
-    add_to_cleanup     => [ 'App-Monport-*' ],
+    add_to_cleanup     => ['App-Monport-*'],
     create_makefile_pl => 'traditional',
 );
 

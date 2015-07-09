@@ -1,6 +1,8 @@
 package App::Monport;
 use App::Cmd::Setup -app;
 
+our $VERSION = '0.01';
+
 =head1 NAME
 
 App::Monport - monitor network ports for changes
