@@ -18,3 +18,5 @@ nytprof.out
 *.o
 *.bs
 /_eumm/
+/Makefile.PL
+/App-Monport-*.*.tar.gz
