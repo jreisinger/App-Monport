@@ -1,9 +1,16 @@
+bin/monport
 Build.PL
 Changes
 lib/App/Monport.pm
+lib/App/Monport/Command.pm
+lib/App/Monport/Command/base.pm
+lib/App/Monport/Command/diff.pm
+lib/App/Monport/Nmap.pm
 LICENSE
 MANIFEST			This list of files
-README
-README.md
-t/t
-t/xt
+README.pod
+t/00-load.t
+t/boilerplate.t
+t/manifest.t
+t/pod-coverage.t
+t/pod.t

@@ -3,11 +3,11 @@ package App::Monport::Command::diff;
 use App::Monport -command;
 use App::Monport::Nmap;
 
-sub usage_desc { "base %o <target> [<target2> <target3> ... <targetN>]" }
+sub usage_desc { "base %o" }
 
 sub options {
   return (
-    [ "email|e=s@", "send differences via email instead of printing them to stdout", ],
+    [ "email|m=s@", "send differences via email instead of printing them to stdout", ],
   );
 }
 
