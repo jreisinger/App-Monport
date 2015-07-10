@@ -19,6 +19,18 @@ my $nmap_exe;
 my $path;
 my $base_file;
 
+=head1 DESCRIPTION
+
+The core functions are defined here.
+
+=head1 FUNCTIONS
+
+=head2 set_vars( $scan_name, $nmap_exe )
+
+Set variables for this package.
+
+=cut
+
 sub set_vars {
     ( $scan_name, $nmap_exe ) = @_;
 
@@ -27,6 +39,12 @@ sub set_vars {
     $path      = "$base_dir/$scan_name";
     $base_file = "$path/base.xml";
 }
+
+=head2 email_diffs( @email_addresses )
+
+If some differences in ports' status are found, send to to @email_addresses.
+
+=cut
 
 sub email_diffs {
     my @email_addresses = @_;
@@ -72,6 +90,12 @@ sub loadModule {
     }
 }
 
+=head2 sendMail( $to, $subject, $body )
+
+Send email. Based on L<http://perldoc.perl.org/perlfaq9.html>.
+
+=cut
+
 sub sendMail {
     my ( $receiver, $subject, $mail_body ) = @_;
 
@@ -105,9 +129,21 @@ sub sendMail {
     sendmail($message);
 }
 
+=head2 print_diffs()
+
+If some differences in ports' status are found, print them to STDOUT.
+
+=cut
+
 sub print_diffs {
     print get_diffs();
 }
+
+=head2 list_basescans()
+
+List names of available base(line) scans.
+
+=cut
 
 sub list_basescans {
     for my $dir ( glob "$base_dir/*" ) {
@@ -115,6 +151,13 @@ sub list_basescans {
         print "$name\n";
     }
 }
+
+=head2 get_basescan_opts_and_args( $base )
+
+Get nmap options and arguments used for a given base(line) scan. $base is
+Nmap::Parser object.
+
+=cut
 
 sub get_basescan_opts_and_args {
     my $base    = shift;
@@ -132,6 +175,12 @@ sub get_basescan_opts_and_args {
 
     return $nmap_opts, $targets;
 }
+
+=head2 get_diffs()
+
+Get differences in ports' status between a base(line) scan and a current scan
+
+=cut
 
 sub get_diffs {
     my $base = new Nmap::Parser;
@@ -182,6 +231,12 @@ sub get_diffs {
     return $msg;
 }
 
+=head2 do_basescan( $nmapopts, $targets )
+
+Execute base(line) scan.
+
+=cut
+
 sub do_basescan {
     my ( $nmapopts, $targets ) = @_;
     $nmapopts = [] unless $nmapopts;    # so that we don't get warning
@@ -194,6 +249,12 @@ sub do_basescan {
         system "$nmap_exe @$nmapopts -oX $base_file @$targets";
     }
 }
+
+=head2 print_basescan()
+
+Print base scan results.
+
+=cut
 
 sub print_basescan {
     my $np = new Nmap::Parser;
