@@ -49,6 +49,14 @@ or install manually by cloning the L</"SOURCE REPOSITORY"> and then running:
 
 L<http://github.com/jreisinger/App-Monport>
 
+=begin html
+
+<p>
+  <img src="https://api.travis-ci.org/jreisinger/App-Monport.svg?branch=master" alt="Travis CI build status">
+</p>
+
+=end html
+
 =head1 AUTHOR
 
 Jozef Reisinger, E<lt>reisinge@cpan.orgE<gt>
