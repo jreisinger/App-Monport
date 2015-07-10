@@ -19,15 +19,15 @@ Use this application to find out whether some new ports have been opened (or
 existing ones have been closed). More open ports mean bigger attack surface and
 consequently higher security risk.
 
-Firs you should run a base scan:
+First you should run a base scan, like:
 
  $ monport base --name localhost 127.0.0.1
 
-Later on check whether some changes in ports's state took place:
+Later on check whether some changes in ports' state took place:
 
  $ monport diff --name localhost
 
-To check regularly, create a cronjob like:
+To check regularly create a cronjob like:
 
  * 21 * * 5      monport --diff --name localhost --email jdoe@example.com
 
