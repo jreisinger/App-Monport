@@ -3,9 +3,17 @@ use App::Cmd::Setup -app;
 
 our $VERSION = '0.04';
 
+=begin html
+
+<p>
+  <img src="https://api.travis-ci.org/jreisinger/App-Monport.svg?branch=master" alt="Travis CI build status">
+</p>
+
+=end html
+
 =head1 NAME
 
-App::Monport - monitor network ports for changes
+App::Monport - Monitor network ports for changes
 
 =head1 SYNOPSIS
 
@@ -48,14 +56,6 @@ or install manually by cloning the L</"SOURCE REPOSITORY"> and then running:
 =head1 SOURCE REPOSITORY
 
 L<http://github.com/jreisinger/App-Monport>
-
-=begin html
-
-<p>
-  <img src="https://api.travis-ci.org/jreisinger/App-Monport.svg?branch=master" alt="Travis CI build status">
-</p>
-
-=end html
 
 =head1 AUTHOR
 
