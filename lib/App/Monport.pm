@@ -3,13 +3,7 @@ use App::Cmd::Setup -app;
 
 our $VERSION = '0.04';
 
-=begin html
-
-<p>
-  <img src="https://api.travis-ci.org/jreisinger/App-Monport.svg?branch=master" alt="Travis CI build status">
-</p>
-
-=end html
+=for HTML <a href="https://travis-ci.org/jreisinger/App-Monport"><img src="https://travis-ci.org/jreisinger/App-Monport.svg?branch=master"></a>
 
 =head1 NAME
 
