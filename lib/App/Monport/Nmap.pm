@@ -14,10 +14,10 @@ our @EXPORT =
 
 my $base_dir = "$ENV{HOME}/.monport";
 
-my $scan_name;
-my $nmap_exe;
-my $path;
-my $base_file;
+our $scan_name;
+our $nmap_exe;
+our $path;
+our $base_file;
 
 =head1 DESCRIPTION
 
@@ -32,7 +32,7 @@ Set variables for this package.
 =cut
 
 sub set_vars {
-    our ( $scan_name, $nmap_exe ) = @_;
+    ( $scan_name, $nmap_exe ) = @_;
 
     $scan_name =~ s/\s+/_/g;
 
