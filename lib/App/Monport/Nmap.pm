@@ -8,6 +8,8 @@ use File::Path qw(make_path);
 use Nmap::Parser;
 use File::Basename qw(basename);
 use Sys::Hostname qw(hostname);
+use Email::MIME;
+use Email::Sender::Simple;
 
 our @EXPORT =
   qw(list_basescans set_vars do_basescan print_basescan email_diffs print_diffs);
@@ -55,41 +57,6 @@ sub email_diffs {
     }
 }
 
-=head2 loadModule( $module )
-
-Try to load a $module at runtime. Return 1 on success 0 otherwise. $module can
-be 'Module::Name' or 'Module/Name.pm'.
-
-Loading error is stored in C<$@> and can propagate to die() if die() is
-use without arguments:
-
-    loadModule( $module ) or die;
-
-=cut
-
-sub loadModule {
-    my $module = shift;
-
-    # require doesn't work with Module::Name stored in a variable so we turn it
-    # into Module/Name.pm
-    $module = File::Spec->catfile( split( /::/, $module ) ) . '.pm'
-      if $module =~ /::/;
-
-    eval {
-        require $module;
-        $module->import;
-        1;
-    };
-
-    if ($@) {
-
-        #print STDERR "Failed to load $module because: $@";
-        return 0;
-    } else {
-        return 1;
-    }
-}
-
 =head2 sendMail( $to, $subject, $body )
 
 Send email. Based on L<http://perldoc.perl.org/perlfaq9.html>.
@@ -98,12 +65,6 @@ Send email. Based on L<http://perldoc.perl.org/perlfaq9.html>.
 
 sub sendMail {
     my ( $receiver, $subject, $mail_body ) = @_;
-
-    # We need these modules
-    my @modules = qw( Email::MIME Email::Sender::Simple );
-    for (@modules) {
-        loadModule($_) or die;
-    }
 
     # sender will the user running the program
     my $host  = hostname;
