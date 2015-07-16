@@ -12,7 +12,7 @@ use Sys::Hostname qw(hostname);
 our @EXPORT =
   qw(list_basescans set_vars do_basescan print_basescan email_diffs print_diffs);
 
-my $base_dir = "$ENV{HOME}/.monport";
+our $base_dir = "$ENV{HOME}/.monport";
 
 our $scan_name;
 our $nmap_exe;

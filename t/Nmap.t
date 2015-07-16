@@ -15,10 +15,10 @@ my %fixed_scan_name = (
     "my  Scan " => "my_Scan_",
 );
 
+# Is regex substitution working correctly?
 for my $name ( keys %fixed_scan_name ) {
     set_vars( $name, "/usr/bin/nmap" );
     is( $App::Monport::Nmap::scan_name, $fixed_scan_name{$name}, "Scan name '$name'" );
-    is( $App::Monport::Nmap::nmap_exe, "/usr/bin/nmap", "Nmap executable" );
 }
 
 done_testing();
