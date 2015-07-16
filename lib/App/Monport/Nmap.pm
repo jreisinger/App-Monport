@@ -36,7 +36,7 @@ Set variables for this package.
 sub set_vars {
     ( $scan_name, $nmap_exe ) = @_;
 
-    $scan_name =~ s/\s+/_/g;
+    $scan_name =~ s/\s/_/g;
 
     $path      = "$base_dir/$scan_name";
     $base_file = "$path/base.xml";
