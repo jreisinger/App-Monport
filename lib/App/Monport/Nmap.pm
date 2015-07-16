@@ -32,7 +32,7 @@ Set variables for this package.
 =cut
 
 sub set_vars {
-    ( $scan_name, $nmap_exe ) = @_;
+    our ( $scan_name, $nmap_exe ) = @_;
 
     $scan_name =~ s/\s+/_/g;
 
