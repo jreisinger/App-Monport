@@ -10,11 +10,12 @@ use File::Basename qw(basename);
 use Sys::Hostname qw(hostname);
 use Email::MIME;
 use Email::Sender::Simple;
+use File::Spec::Functions;
 
 our @EXPORT =
   qw(list_basescans set_vars do_basescan print_basescan email_diffs print_diffs);
 
-our $base_dir = "$ENV{HOME}/.monport";
+our $base_dir = catfile $ENV{HOME}, "monport";
 
 our $scan_name;
 our $nmap_exe;
@@ -38,8 +39,8 @@ sub set_vars {
 
     $scan_name =~ s/\s/_/g;
 
-    $path      = "$base_dir/$scan_name";
-    $base_file = "$path/base.xml";
+    $path      = catfile $base_dir, $scan_name;
+    $base_file = catfile $path,     "base.xml";
 }
 
 =head2 email_diffs( @email_addresses )
@@ -107,7 +108,7 @@ List names of available base(line) scans.
 =cut
 
 sub list_basescans {
-    for my $dir ( glob "$base_dir/*" ) {
+    for my $dir ( glob catfile( $base_dir, '*' ) ) {
         ( my $name = basename $dir) =~ s/_/ /g;
         print "$name\n";
     }
