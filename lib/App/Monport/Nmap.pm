@@ -15,7 +15,7 @@ use File::Spec::Functions;
 our @EXPORT =
   qw(list_basescans set_vars do_basescan print_basescan email_diffs print_diffs);
 
-our $base_dir = catfile $ENV{HOME}, "monport";
+our $base_dir = catfile $ENV{HOME}, ".monport";
 
 our $scan_name;
 our $nmap_exe;

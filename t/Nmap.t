@@ -4,6 +4,7 @@ use strict;
 use warnings FATAL => 'all';
 use Test::More;
 use File::Path qw(remove_tree);
+use File::Spec::Functions;
 
 BEGIN {
     use_ok('App::Monport::Nmap') || print "Bail out!\n";
@@ -35,12 +36,12 @@ my %scan_name = reverse %fixed_scan_name;    # invert the hash
 
 # Save the original base directory
 my $orig_base_dir = $App::Monport::Nmap::base_dir;
-$App::Monport::Nmap::base_dir = "$ENV{HOME}/.monport-test";
+$App::Monport::Nmap::base_dir = catfile $ENV{HOME}, ".monport-test";
 
 # Create test directories for scans
 for my $dir ( keys %scan_name ) {
     mkdir $App::Monport::Nmap::base_dir;
-    mkdir "$App::Monport::Nmap::base_dir/$dir";
+    mkdir catfile( $App::Monport::Nmap::base_dir, $dir );
 }
 
 # Change STDOUT and print list of base scans
