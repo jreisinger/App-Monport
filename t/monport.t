@@ -10,8 +10,9 @@ SKIP: {
       unless -e "/usr/bin/nmap";
 
     # Execute base scan
-    system
+    my $exit = system
       "perl bin/monport base --name 'localhost test' 127.0.0.1 > /dev/null";
+    is( $exit, 0, "base scan execution" );
 
     my $out;
 
