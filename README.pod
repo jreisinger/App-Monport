@@ -28,7 +28,9 @@ Later on check whether some changes in ports' state took place:
 
 To check regularly create a cronjob like:
 
- * 21 * * 5      monport diff --name "test scan" --email jdoe@example.com
+ PERL5LIB=/home/jdoe/perl5/lib/perl5
+
+ * 21 * * 5      /home/jdoe/perl5/bin/monport diff --name "test scan" --email jdoe@example.com
 
 =head1 INSTALLATION
 
