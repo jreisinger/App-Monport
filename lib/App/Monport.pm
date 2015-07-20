@@ -35,11 +35,11 @@ To check regularly create a cronjob like:
 
  PERL5LIB=/home/jdoe/perl5/lib/perl5
 
- * 21 * * 5      /home/jdoe/perl5/bin/monport diff --name "test scan" --email jdoe@example.com
+ * 21 * * 5 /home/jdoe/perl5/bin/monport diff --name "test scan" --email jdoe@example.com
 
 =head1 INSTALLATION
 
-To install this module, run:
+To install this module run:
 
  $ cpanm App::Monport
 
