@@ -41,15 +41,23 @@ To check regularly create a cronjob like:
 
 To install this module run:
 
+ $ cpan App::Monport
+
+or
+
  $ cpanm App::Monport
 
-when using L<App::cpanminus>. Of course you can use your favorite CPAN client
-or install manually by cloning the L</"SOURCE REPOSITORY"> and then running:
+when using L<App::cpanminus>.
+
+To install manually clone the L</"SOURCE REPOSITORY"> and then run (on Unix):
 
  perl Build.PL
  ./Build
  ./Build test
  ./Build install
+
+For more see L<StackOverflow|http://stackoverflow.com/questions/65865/whats-the-easiest-way-to-install-a-missing-perl-module>
+or L<CPAN|http://www.cpan.org/modules/INSTALL.html> instructions.
 
 =head1 SOURCE REPOSITORY
 
