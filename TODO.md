@@ -12,4 +12,4 @@ Use this application to find out whether some new ports have been opened or exis
 base: create base(line) scan that will be used for future comparisons
 diff: check for differences by comparing base scan and actual state
 list: list base scans
-del: delete a base scan
+del: delete base scan
