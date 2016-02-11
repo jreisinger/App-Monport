@@ -14,6 +14,8 @@ The application works by comparing the actual state of ports (open or closed) wi
 * email
 * twitter
 
+Nmap is used for doing the port scanning so you need to have it installed.
+
 base: create base(line) scan that will be used for future comparisons
 diff: check for differences by comparing base scan and actual state
 list: list base scans
