@@ -21,7 +21,6 @@ sub opt_spec {
   return (
     [ 'help|h', "this usage screen" ],
     [ 'name|n=s', "name of the scan (default: 'noname')", { default => "noname" } ],
-    [ 'nmapexe|e=s', "nmap executable (default: '/usr/bin/nmap')", { default => "/usr/bin/nmap" } ],
     $class->options($app),
   )
 }

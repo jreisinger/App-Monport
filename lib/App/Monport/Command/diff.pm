@@ -28,6 +28,7 @@ Options.
 sub options {
   return (
     [ "email|m=s@", "send differences via email instead of printing them to stdout", ],
+    [ 'nmapexe|e=s', "nmap executable (default: '/usr/bin/nmap')", { default => "/usr/bin/nmap" } ],
   );
 }
 

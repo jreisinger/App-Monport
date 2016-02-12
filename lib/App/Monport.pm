@@ -43,6 +43,20 @@ To check regularly create a cronjob like:
 
  * 21 * * 5 /home/jdoe/perl5/bin/monport diff --name "test scan" --email jdoe@example.com
 
+To list the executed base scans:
+
+ $ monport list
+ noname
+ test scan
+
+To see the results of the base scan:
+
+ $ monport list -p -n 'test scan'
+ Base scan done: Fri Feb 12 08:41:06 2016
+
+ 127.0.0.1 (localhost)
+     22 (ssh)
+
 =head1 INSTALLATION
 
 To install this module run:

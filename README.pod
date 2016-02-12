@@ -6,15 +6,21 @@ App::Monport - Monitor network ports for changes
 
 =head1 SYNOPSIS
 
-Run this to see available sub-commands (use -h to get help):
+Run this to see available commands:
 
  $ monport
 
 =head1 DESCRIPTION
 
-Use this application to find out whether some new ports have been opened (or
-existing ones have been closed). More open ports mean bigger attack surface and
-consequently higher security risk.
+Use this application to find out whether some new ports have been opened or
+existing ones have been closed. New open ports mean bigger attack surface and
+consequently higher security risk. If a port gets closed it might indicate a
+problem with a network service.
+
+The application works by comparing the actual state of ports (open or closed)
+with the baseline scan. Any found differences are reported (via command line
+interface, email, twitter). C<Nmap> is used for doing the port scanning so you
+need to have it installed.
 
 First you should run a base scan, like:
 
@@ -31,6 +37,20 @@ To check regularly create a cronjob like:
  PERL5LIB=/home/jdoe/perl5/lib/perl5
 
  * 21 * * 5 /home/jdoe/perl5/bin/monport diff --name "test scan" --email jdoe@example.com
+
+To list the executed base scans:
+
+ $ monport list
+ noname
+ test scan
+
+To see the results of the base scan:
+
+ $ monport list -p -n 'test scan'
+ Base scan done: Fri Feb 12 08:41:06 2016
+
+ 127.0.0.1 (localhost)
+     22 (ssh)
 
 =head1 INSTALLATION
 

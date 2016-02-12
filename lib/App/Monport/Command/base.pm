@@ -28,8 +28,7 @@ Options.
 sub options {
   return (
     [ "nmapopts|o=s@", "nmap options" ],
-    [ "list|l", "list existing base scan names" ],
-    [ "print|p",  "print base scan results" ],
+    [ 'nmapexe|e=s', "nmap executable (default: '/usr/bin/nmap')", { default => "/usr/bin/nmap" } ],
   );
 }
 
@@ -42,11 +41,7 @@ Validate the command options and arguments.
 sub validate {
   my ($self, $opt, $args) = @_;
 
-  if ( $opt->print or $opt->list ) {
-      # We don't need arguments with these options
-  } else {
-      $self->usage_error("no target(s) to scan") unless @$args;
-  }
+  $self->usage_error("no target(s) to scan") unless @$args;
 }
 
 =head2 execute()
@@ -60,13 +55,7 @@ sub execute {
 
   set_vars($opt->name, $opt->nmapexe);
 
-  if ($opt->print) {
-      print_basescan();
-  } elsif ($opt->list) {
-      list_basescans();
-  } else {
-      do_basescan($opt->nmapopts, $args);
-  }
+  do_basescan($opt->nmapopts, $args);
 }
 
 1;

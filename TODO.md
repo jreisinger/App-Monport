@@ -7,5 +7,4 @@ Add support for twitter notifications as email notifications' alternative
 Improve UI + documentation
 --------------------------
 
-list: list base scans
 del: delete base scan
