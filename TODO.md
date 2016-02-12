@@ -7,16 +7,5 @@ Add support for twitter notifications as email notifications' alternative
 Improve UI + documentation
 --------------------------
 
-Use this application to find out whether some new ports have been opened or existing ones have been closed. New open ports mean bigger attack surface and consequently higher security risk. If a port gets closed it might indicate a problem with a network service.
-
-The application works by comparing the actual state of ports (open or closed) with the baseline scan. Any found differences get reported via:
-* command line interface
-* email
-* twitter
-
-Nmap is used for doing the port scanning so you need to have it installed.
-
-base: create base(line) scan that will be used for future comparisons
-diff: check for differences by comparing base scan and actual state
 list: list base scans
 del: delete base scan

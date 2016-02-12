@@ -1,4 +1,4 @@
-# ABSTRACT: check for differences between base scan and now
+# ABSTRACT: check for differences by comparing base scan and actual state
 package App::Monport::Command::diff;
 use App::Monport -command;
 use App::Monport::Nmap;
