@@ -1,4 +1,5 @@
 package App::Monport;
+use strict;
 use App::Cmd::Setup -app;
 
 our $VERSION = '0.07';

@@ -1,5 +1,6 @@
 # ABSTRACT: create base(line) scan that will be used for future comparisons
 package App::Monport::Command::base;
+use strict;
 use App::Monport -command;
 use App::Monport::Nmap;
 

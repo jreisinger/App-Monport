@@ -1,4 +1,5 @@
 package App::Monport::Command;
+use strict;
 use App::Cmd::Setup -command;
 
 =head1 DESCRIPTION

@@ -1,5 +1,7 @@
 [PerlTidy]
 select = {lib,t}/**/*.{pl,pm,t}
 select = Build.PL
-select = {mod2html,podtree2html,pods2html,perl2html}
 
+[PerlCritic]
+select = lib/**/*.pm
+argv = -severity 5

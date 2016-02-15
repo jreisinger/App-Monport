@@ -1,5 +1,6 @@
 # ABSTRACT: delete base scans
 package App::Monport::Command::del;
+use strict;
 use App::Monport -command;
 use App::Monport::Nmap;
 

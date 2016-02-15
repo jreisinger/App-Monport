@@ -1,5 +1,6 @@
 # ABSTRACT: list base scans
 package App::Monport::Command::list;
+use strict;
 use App::Monport -command;
 use App::Monport::Nmap;
 

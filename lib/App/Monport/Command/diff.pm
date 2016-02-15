@@ -1,5 +1,6 @@
 # ABSTRACT: check for differences by comparing base scan and actual state
 package App::Monport::Command::diff;
+use strict;
 use App::Monport -command;
 use App::Monport::Nmap;
 
