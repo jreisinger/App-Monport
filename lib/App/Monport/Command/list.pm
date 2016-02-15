@@ -26,9 +26,7 @@ Options.
 =cut
 
 sub options {
-  return (
-    [ "print|p",  "print base scan results" ],
-  );
+    return ( [ "print|p", "print base scan results" ], );
 }
 
 =head2 validate()
@@ -38,11 +36,12 @@ Validate the command options and arguments.
 =cut
 
 sub validate {
-  my ($self, $opt, $args) = @_;
+    my ( $self, $opt, $args ) = @_;
 
-  if ( $opt->print ) {
-      # We don't need arguments with these options
-  }
+    if ( $opt->print ) {
+
+        # We don't need arguments with these options
+    }
 }
 
 =head2 execute()
@@ -52,15 +51,15 @@ Run the command.
 =cut
 
 sub execute {
-  my ($self, $opt, $args) = @_;
+    my ( $self, $opt, $args ) = @_;
 
-  set_vars($opt->name );
+    set_vars( $opt->name );
 
-  if ($opt->print) {
-      print_basescan();
-  } else {
-      list_basescans();
-  }
+    if ( $opt->print ) {
+        print_basescan();
+    } else {
+        list_basescans();
+    }
 }
 
 1;

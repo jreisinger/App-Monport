@@ -35,9 +35,9 @@ Validate the command options and arguments.
 =cut
 
 sub validate {
-  my ($self, $opt, $args) = @_;
+    my ( $self, $opt, $args ) = @_;
 
-  $self->usage_error("no scan to delete") unless @$args;
+    $self->usage_error("no scan to delete") unless @$args;
 }
 
 =head2 execute()
@@ -47,15 +47,15 @@ Run the command.
 =cut
 
 sub execute {
-  my ($self, $opt, $args) = @_;
+    my ( $self, $opt, $args ) = @_;
 
-  set_vars($opt->name );
+    set_vars( $opt->name );
 
-  if ($opt->print) {
-      print_basescan();
-  } else {
-      del_basescans();
-  }
+    if ( $opt->print ) {
+        print_basescan();
+    } else {
+        del_basescans();
+    }
 }
 
 1;

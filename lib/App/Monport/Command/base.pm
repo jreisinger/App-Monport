@@ -26,10 +26,14 @@ Options.
 =cut
 
 sub options {
-  return (
-    [ "nmapopts|o=s@", "nmap options" ],
-    [ 'nmapexe|e=s', "nmap executable (default: '/usr/bin/nmap')", { default => "/usr/bin/nmap" } ],
-  );
+    return (
+        [ "nmapopts|o=s@", "nmap options" ],
+        [
+            'nmapexe|e=s',
+            "nmap executable (default: '/usr/bin/nmap')",
+            { default => "/usr/bin/nmap" }
+        ],
+    );
 }
 
 =head2 validate()
@@ -39,9 +43,9 @@ Validate the command options and arguments.
 =cut
 
 sub validate {
-  my ($self, $opt, $args) = @_;
+    my ( $self, $opt, $args ) = @_;
 
-  $self->usage_error("no target(s) to scan") unless @$args;
+    $self->usage_error("no target(s) to scan") unless @$args;
 }
 
 =head2 execute()
@@ -51,11 +55,11 @@ Run the command.
 =cut
 
 sub execute {
-  my ($self, $opt, $args) = @_;
+    my ( $self, $opt, $args ) = @_;
 
-  set_vars($opt->name, $opt->nmapexe);
+    set_vars( $opt->name, $opt->nmapexe );
 
-  do_basescan($opt->nmapopts, $args);
+    do_basescan( $opt->nmapopts, $args );
 }
 
 1;

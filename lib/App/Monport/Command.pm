@@ -17,12 +17,16 @@ Global options.
 =cut
 
 sub opt_spec {
-  my ( $class, $app ) = @_;
-  return (
-    [ 'help|h', "this usage screen" ],
-    [ 'name|n=s', "name of the scan (default: 'noname')", { default => "noname" } ],
-    $class->options($app),
-  )
+    my ( $class, $app ) = @_;
+    return (
+        [ 'help|h', "this usage screen" ],
+        [
+            'name|n=s',
+            "name of the scan (default: 'noname')",
+            { default => "noname" }
+        ],
+        $class->options($app),
+    );
 }
 
 =head2 validate_args()
@@ -32,15 +36,14 @@ Validate global arguments.
 =cut
 
 sub validate_args {
-  my ( $self, $opt, $args ) = @_;
-  if ( $opt->{help} ) {
-    my ($command) = $self->command_names;
-    $self->app->execute_command(
-      $self->app->prepare_command("help", $command)
-    );
-    exit;
-  }
-  $self->validate( $opt, $args );
+    my ( $self, $opt, $args ) = @_;
+    if ( $opt->{help} ) {
+        my ($command) = $self->command_names;
+        $self->app->execute_command(
+            $self->app->prepare_command( "help", $command ) );
+        exit;
+    }
+    $self->validate( $opt, $args );
 }
 
 1;

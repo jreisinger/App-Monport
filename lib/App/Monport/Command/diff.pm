@@ -26,10 +26,17 @@ Options.
 =cut
 
 sub options {
-  return (
-    [ "email|m=s@", "send differences via email instead of printing them to stdout", ],
-    [ 'nmapexe|e=s', "nmap executable (default: '/usr/bin/nmap')", { default => "/usr/bin/nmap" } ],
-  );
+    return (
+        [
+            "email|m=s@",
+            "send differences via email instead of printing them to stdout",
+        ],
+        [
+            'nmapexe|e=s',
+            "nmap executable (default: '/usr/bin/nmap')",
+            { default => "/usr/bin/nmap" }
+        ],
+    );
 }
 
 =head2 execute()
@@ -39,15 +46,15 @@ Run the command.
 =cut
 
 sub execute {
-  my ($self, $opt, $args) = @_;
+    my ( $self, $opt, $args ) = @_;
 
-  set_vars($opt->name, $opt->nmapexe);
+    set_vars( $opt->name, $opt->nmapexe );
 
-  if ($opt->email) {
-      email_diffs(@{$opt->email});
-  } else {
-      print_diffs();
-  }
+    if ( $opt->email ) {
+        email_diffs( @{ $opt->email } );
+    } else {
+        print_diffs();
+    }
 }
 
 =head2 validate()
