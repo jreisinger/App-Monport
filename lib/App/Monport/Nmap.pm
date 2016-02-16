@@ -149,6 +149,8 @@ sub get_diffs {
     my $base = new Nmap::Parser;
     my $curr = new Nmap::Parser;
 
+    die "no base scan for $scan_name\n" unless -e $base_file;
+
     $base->parsefile($base_file);    #load previous state
     my ( $nmap_opts, $targets ) = get_basescan_opts_and_args($base);
 
@@ -220,6 +222,8 @@ Print base scan results.
 =cut
 
 sub print_basescan {
+    die "no base scan for $scan_name\n" unless -e $base_file;
+
     my $np = new Nmap::Parser;
     $np->parsefile($base_file);
 
