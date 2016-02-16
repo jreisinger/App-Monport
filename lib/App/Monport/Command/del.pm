@@ -18,7 +18,7 @@ Usage description.
 
 =cut
 
-sub usage_desc { "del '<scan name>'" }
+sub usage_desc { "del <scan name>" }
 
 =head2 options()
 
@@ -49,8 +49,6 @@ Run the command.
 
 sub execute {
     my ( $self, $opt, $args ) = @_;
-
-    set_vars( $opt->name );
 
     del_scan(@$args);
 }
