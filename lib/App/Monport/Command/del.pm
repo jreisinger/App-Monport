@@ -18,7 +18,7 @@ Usage description.
 
 =cut
 
-sub usage_desc { "del %o" }
+sub usage_desc { "del '<scan name>'" }
 
 =head2 options()
 
@@ -52,11 +52,7 @@ sub execute {
 
     set_vars( $opt->name );
 
-    if ( $opt->print ) {
-        print_basescan();
-    } else {
-        del_basescans();
-    }
+    del_scan(@$args);
 }
 
 1;

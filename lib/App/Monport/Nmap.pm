@@ -11,9 +11,10 @@ use Sys::Hostname qw(hostname);
 use Email::MIME;
 use Email::Sender::Simple;
 use File::Spec::Functions;
+use File::Path qw(remove_tree);
 
-our @EXPORT =
-  qw(list_basescans set_vars do_basescan print_basescan email_diffs print_diffs);
+our @EXPORT = qw(list_basescans set_vars do_basescan print_basescan email_diffs
+  print_diffs del_scan);
 
 our $base_dir = catfile $ENV{HOME}, ".monport";
 
@@ -245,6 +246,24 @@ sub print_basescan {
             print "    $_ ($servicename)\n";
         }
     }
+}
+
+=head2 del_scan("scan name")
+
+Delete the "scan name" from disk.
+
+=cut
+
+sub del_scan {
+    my $scan = shift;
+
+    $scan =~ s/\s/_/g;
+
+    my $path = catfile( $base_dir, $scan );
+
+    die "$scan scan does not exist\n" unless -d $path;
+
+    remove_tree $path;
 }
 
 1;
