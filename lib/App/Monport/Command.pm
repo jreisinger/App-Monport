@@ -21,11 +21,6 @@ sub opt_spec {
     my ( $class, $app ) = @_;
     return (
         [ 'help|h', "this usage screen" ],
-        [
-            'name|n=s',
-            "name of the scan (default: 'noname')",
-            { default => "noname" }
-        ],
         $class->options($app),
     );
 }

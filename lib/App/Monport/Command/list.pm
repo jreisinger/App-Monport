@@ -27,7 +27,14 @@ Options.
 =cut
 
 sub options {
-    return ( [ "print|p", "print base scan results" ], );
+    return (
+      [ "print|p", "print base scan results" ],
+      [
+          'name|n=s',
+          "name of the scan (default: 'noname')",
+          { default => "noname" }
+      ],
+    );
 }
 
 =head2 validate()

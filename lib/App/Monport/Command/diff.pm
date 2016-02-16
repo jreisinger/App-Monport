@@ -37,6 +37,11 @@ sub options {
             "nmap executable (default: '/usr/bin/nmap')",
             { default => "/usr/bin/nmap" }
         ],
+        [
+            'name|n=s',
+            "name of the scan (default: 'noname')",
+            { default => "noname" }
+        ],
     );
 }
 
