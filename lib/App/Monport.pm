@@ -2,7 +2,7 @@ package App::Monport;
 use strict;
 use App::Cmd::Setup -app;
 
-our $VERSION = '0.07';
+our $VERSION = '0.08';
 
 =for HTML <a href="https://travis-ci.org/jreisinger/App-Monport"><img src="https://travis-ci.org/jreisinger/App-Monport.svg?branch=master"></a>
 

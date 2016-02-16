@@ -1,15 +1,12 @@
-To generate `README`:
-
-    podselect lib/App/Monport.pm > README.pod
-
 To generate `LICENSE` use `App::Software::License`:
 
     software-license --holder 'Jozef Reisinger' --license Perl_5 --type notice --year 2015 > LICENSE
 
 To upload the distro to CPAN:
 
-    vi lib/App/Monport.pm
+    vi lib/App/Monport.pm   # increase $VERSION
     vi Changes
+    podselect lib/App/Monport.pm > README.pod
     perl Build.PL && ./Build && ./Build test && ./Build install && \
     ./Build disttest && ./Build dist
     cpan-upload App-Monport-<version>.tar.gz --user reisinge
