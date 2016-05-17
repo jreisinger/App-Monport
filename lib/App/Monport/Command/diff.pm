@@ -33,6 +33,10 @@ sub options {
             "send differences via email instead of printing them to stdout",
         ],
         [
+            "tweet|t",
+            "tweet differences instead of printing them to stdout",
+        ],
+        [
             'nmapexe|e=s',
             "nmap executable (default: '/usr/bin/nmap')",
             { default => "/usr/bin/nmap" }
@@ -58,6 +62,8 @@ sub execute {
 
     if ( $opt->email ) {
         email_diffs( @{ $opt->email } );
+    } elsif ( $opt->tweet ) {
+        tweet_diffs();
     } else {
         print_diffs();
     }

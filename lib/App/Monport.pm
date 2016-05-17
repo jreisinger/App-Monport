@@ -2,7 +2,7 @@ package App::Monport;
 use strict;
 use App::Cmd::Setup -app;
 
-our $VERSION = '0.08';
+our $VERSION = '0.09';
 
 =for HTML <a href="https://travis-ci.org/jreisinger/App-Monport"><img src="https://travis-ci.org/jreisinger/App-Monport.svg?branch=master"></a>
 
@@ -20,13 +20,14 @@ Run this to see available commands:
 
 Use this application to find out whether some new ports have been opened or
 existing ones have been closed. New open ports mean bigger attack surface and
-consequently higher security risk. If a port gets closed it might indicate a
-problem with a network service.
+consequently higher security risk. On the other hand if a port gets closed it
+might indicate a problem with a network service.
 
 The application works by comparing the actual state of ports (open or closed)
-with the baseline scan. Any found differences are reported (via command line
-interface, email, twitter). C<Nmap> is used for doing the port scanning so you
-need to have it installed.
+with the baseline scan. Any differences found are reported (via command line
+interface, email,
+L<twitter|http://iag.me/socialmedia/how-to-create-a-twitter-app-in-8-easy-steps/>).
+C<Nmap> is used for doing the port scanning so you need to have it installed.
 
 First you should run a base scan, like:
 
