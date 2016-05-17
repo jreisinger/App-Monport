@@ -19,6 +19,7 @@ my $builder = Module::Build->new(
         'App::Cmd::Setup'       => 0,
         'Email::Sender::Simple' => 0,
         'Nmap::Parser'          => 0,
+        'Net::Twitter'          => 0,
     },
     add_to_cleanup     => ['App-Monport-*'],
     create_makefile_pl => 'traditional',
