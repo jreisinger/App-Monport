@@ -56,7 +56,7 @@ sub tweet_diffs {
     if ($diffs) {
       my $nt = Net::Twitter->new(
           traits => [qw/OAuth API::RESTv1_1/],
-          map { $_ => $ENV{"$_"} || die "ENV $_ not set" }
+          map { $_ => $ENV{"$_"} || die "ENV $_ not set\n" }
             qw(
             consumer_secret
             consumer_key
