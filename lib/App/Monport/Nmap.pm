@@ -12,9 +12,10 @@ use Email::MIME;
 use Email::Sender::Simple;
 use File::Spec::Functions;
 use File::Path qw(remove_tree);
+use Net::Twitter;
 
 our @EXPORT = qw(list_basescans set_vars do_basescan print_basescan email_diffs
-  print_diffs del_scan);
+  print_diffs del_scan tweet_diffs);
 
 our $base_dir = catfile $ENV{HOME}, ".monport";
 
@@ -42,6 +43,30 @@ sub set_vars {
 
     $path      = catfile $base_dir, $scan_name;
     $base_file = catfile $path,     "base.xml";
+}
+
+=head2 tweet_diffs( )
+
+If some differences in ports' status are found, tweet them.
+
+=cut
+
+sub tweet_diffs {
+    my $diffs = get_diffs();
+    if ($diffs) {
+      my $nt = Net::Twitter->new(
+          traits => [qw/OAuth API::RESTv1_1/],
+          map { $_ => $ENV{"$_"} || die "ENV $_ not set" }
+            qw(
+            consumer_secret
+            consumer_key
+            access_token
+            access_token_secret
+            )
+      );
+
+      my $result = $nt->update("monport - $scan_name $diffs");
+    }
 }
 
 =head2 email_diffs( @email_addresses )
