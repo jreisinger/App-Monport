@@ -1,5 +1,9 @@
 Revision history for App-Monport
 
+0.09	2016-05-17
+	Add support for twitter notifications as email notifications'
+	alternative.
+
 0.08    2016-02-16
         Added del command + improved UI.
 
