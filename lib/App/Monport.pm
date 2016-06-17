@@ -43,7 +43,7 @@ To check regularly create a cronjob like:
 
  PERL5LIB=/home/jdoe/perl5/lib/perl5
 
- * 21 * * 5 /home/jdoe/perl5/bin/monport diff --name "test scan" --email jdoe@example.com
+ 07 21 * * 5 /home/jdoe/perl5/bin/monport diff --name "test scan" --email jdoe@example.com
 
 To list the executed base scans:
 
