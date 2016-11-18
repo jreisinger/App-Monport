@@ -1,11 +1,14 @@
 Revision history for App-Monport
 
-0.10		2016-11-18
-				Make sure we have the same version on github and CPAN.
+0.11    2016-11-18
+        Add missing modules to MANIFEST file.
 
-0.09		2016-05-17
-				Add support for twitter notifications as email notifications'
-				alternative.
+0.10    2016-11-18
+        Make sure we have the same version on github and CPAN.
+
+0.09    2016-05-17
+        Add support for twitter notifications as email notifications'
+        alternative.
 
 0.08    2016-02-16
         Added del command + improved UI.
