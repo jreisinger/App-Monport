@@ -10,6 +10,7 @@ To upload the distro to CPAN:
     podselect lib/App/Monport.pm > README.pod
     perl Build.PL && ./Build && ./Build test && ./Build install && \
     ./Build disttest && ./Build dist
+    cpanm CPAN::Uploader
     cpan-upload App-Monport-<version>.tar.gz --user reisinge
 
 * http://blogs.perl.org/users/neilb/2014/08/put-your-cpan-distributions-on-github.html
