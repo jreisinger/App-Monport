@@ -1,5 +1,6 @@
 To generate `LICENSE` use `App::Software::License`:
 
+    cpanm App::Software::License
     software-license --holder 'Jozef Reisinger' --license Perl_5 --type notice --year 2015 > LICENSE
 
 To upload the distro to CPAN:
