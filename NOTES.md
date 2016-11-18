@@ -8,8 +8,7 @@ To upload the distro to CPAN:
     vi lib/App/Monport.pm   # increase $VERSION
     vi Changes
     podselect lib/App/Monport.pm > README.pod
-    perl Build.PL && ./Build && ./Build test && ./Build install && \
-    ./Build disttest && ./Build dist
+    perl Build.PL && ./Build && ./Build test && ./Build install && ./Build disttest && ./Build dist
     cpanm CPAN::Uploader
     cpan-upload App-Monport-<version>.tar.gz --user reisinge
 
