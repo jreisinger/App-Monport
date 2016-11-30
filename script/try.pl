@@ -3,17 +3,34 @@ use strict;
 use warnings;
 use IO::Socket;
 use Storable;
+use File::Basename qw(dirname);
+use YAML;
+use File::Spec qw(catfile);
 
-my $file = q/open_ports.data/;
-my $open_ports = retrieve($file) if -f $file;
+#my $file = q/open_ports.data/;
+#my $open_ports = retrieve($file) if -f $file;
+
+# load configuration from config file
+my $conf_file = File::Spec->catfile( dirname($0), "monport.yml" );
+die "'$conf_file' problem: $!" unless -e $conf_file;
+my $content = eval { local ( @ARGV, $/ ) = ($conf_file); <>; };
+my $config = Load($content);
 
 #use Data::Dumper;
-#print Dumper $open_ports;
+#print Dumper \$config;
 
-for my $host (@ARGV) {
+for my $host (keys $config->{hosts}) {
+
     my $open = scan_ports($host);
-    print "$host: @$open\n";
+    print "$host\n";
+    for my $port (@$open) {
+        print "  $port is not supposed to be open\n"
+          unless grep $port == $_, @{$config->{hosts}{$host}};
+    }
 
+}
+
+=pod
     if ( exists $open_ports->{$host} ) {
 
         # a new port got open?
@@ -31,7 +48,7 @@ for my $host (@ARGV) {
 
     $open_ports->{$host} = $open;
     store $open_ports, $file;
-}
+=cut
 
 sub scan_ports {
     my $host = shift;
@@ -55,4 +72,3 @@ sub scan_ports {
 
     return \@open;
 }
-
