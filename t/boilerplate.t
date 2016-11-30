@@ -4,8 +4,6 @@ use strict;
 use warnings FATAL => 'all';
 use Test::More;
 
-plan tests => 3;
-
 sub not_in_file_ok {
     my ( $filename, %regex ) = @_;
     open( my $fh, '<', $filename )
@@ -48,6 +46,6 @@ TODO: {
 
     not_in_file_ok( Changes => "placeholder date/time" => qr(Date/time) );
 
-    module_boilerplate_ok('lib/App/Monport/Nmap.pm');
-
 }
+
+done_testing;

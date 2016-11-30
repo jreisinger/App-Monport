@@ -1,8 +1,7 @@
 package App::Monport;
 use strict;
-use App::Cmd::Setup -app;
 
-our $VERSION = '0.11';
+our $VERSION = '1.01';
 
 =for HTML <a href="https://travis-ci.org/jreisinger/App-Monport"><img src="https://travis-ci.org/jreisinger/App-Monport.svg?branch=master"></a>
 
@@ -11,8 +10,6 @@ our $VERSION = '0.11';
 App::Monport - Monitor network ports for changes
 
 =head1 SYNOPSIS
-
-Run this to see available commands:
 
  $ monport
 
@@ -24,40 +21,7 @@ consequently higher security risk. On the other hand if a port gets closed it
 might indicate a problem with a network service.
 
 The application works by comparing the actual state of ports (open or closed)
-with the baseline scan. Any differences found are reported (via command line
-interface, email,
-L<twitter|http://iag.me/socialmedia/how-to-create-a-twitter-app-in-8-easy-steps/>).
-C<Nmap> is used for doing the port scanning so you need to have it installed.
-
-First you should run a base scan, like:
-
- $ monport base --name "test scan" localhost 192.168.1.0/24
-
-Later on check whether some changes in ports' state took place:
-
- $ monport diff --name "test scan"
- 192.168.1.10 () has changes in port(s) state
-  3333 (dec-notes) -- not-open => open
-
-To check regularly create a cronjob like:
-
- PERL5LIB=/home/jdoe/perl5/lib/perl5
-
- 07 21 * * 5 /home/jdoe/perl5/bin/monport diff --name "test scan" --email jdoe@example.com
-
-To list the executed base scans:
-
- $ monport list
- noname
- test scan
-
-To see the results of the base scan:
-
- $ monport list -p -n 'test scan'
- Base scan done: Fri Feb 12 08:41:06 2016
-
- 127.0.0.1 (localhost)
-     22 (ssh)
+with the expected state defined in the configuration file.
 
 =head1 INSTALLATION
 

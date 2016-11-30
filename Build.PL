@@ -15,11 +15,7 @@ my $builder = Module::Build->new(
 
         #'ABC'              => 1.6,
         #'Foo::Bar::Module' => 5.0401,
-        'Email::MIME'           => 0,
-        'App::Cmd::Setup'       => 0,
-        'Email::Sender::Simple' => 0,
-        'Nmap::Parser'          => 0,
-        'Net::Twitter'          => 0,
+        'YAML'           => 0,
     },
     add_to_cleanup     => ['App-Monport-*'],
     create_makefile_pl => 'traditional',
