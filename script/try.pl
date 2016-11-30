@@ -19,15 +19,22 @@ my $config = Load($content);
 #use Data::Dumper;
 #print Dumper \$config;
 
-for my $host (keys $config->{hosts}) {
+for my $host (sort keys $config->{hosts}) {
 
     my $open = scan_ports($host);
+    my $expected_open = $config->{hosts}{$host} // [];
+
     print "$host\n";
-    for my $port (@$open) {
-        print "  $port is not supposed to be open\n"
-          unless grep $port == $_, @{$config->{hosts}{$host}};
+
+    for my $port (sort @$open) {
+        print "  $port is open\n"
+          unless grep $port == $_, @$expected_open;
     }
 
+    for my $port (sort @$expected_open) {
+        print "  $port is closed\n"
+          unless grep $port == $_, @$open;
+    }
 }
 
 =pod

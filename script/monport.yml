@@ -4,6 +4,7 @@ email: jeffrey.lebowski@dude.com
 # hosts to monitor
 hosts:
   host1.domain.com:
+    - 22
     - 80
     - 443
   host2.domain.com:
