@@ -4,6 +4,11 @@ use strict;
 use warnings FATAL => 'all';
 use Test::More;
 use IO::Socket;
+use App::Monport;
+
+my $ports = App::Monport::default_ports();
+ok( @$ports > 2000, 'we have plenty of ports to scan' );
+
 
 SKIP: {
     skip "/usr/bin/nmap not present", 1
