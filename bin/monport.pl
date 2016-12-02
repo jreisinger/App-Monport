@@ -4,8 +4,7 @@ use warnings;
 use YAML::Tiny;
 use File::Spec qw(catfile);
 use File::Basename qw(dirname);
-use IO::Socket;
-use List::Util qw(shuffle);
+
 
 my $conf_file = File::Spec->catfile( dirname($0), "monport.yml" );
 
@@ -44,28 +43,6 @@ for my $hashref (@$yaml) {
 }
 
 
-sub scan_ports {
-    my $host = shift;
-    my @open;
-    print "scanning $host: \n";
-    my $ports = default_ports();
-    for my $port (@$ports) {
-        my $socket = IO::Socket::INET->new(
-            PeerAddr => $host,
-            PeerPort => $port,
-            Proto    => 'tcp',
-            Type     => SOCK_STREAM,
-            Timeout  => 1,
-        );
-
-        if ($socket) {
-            push @open, $port;
-            shutdown( $socket, 2 );
-        }
-    }
-
-    return \@open;
-}
 
 =head1 NAME
 

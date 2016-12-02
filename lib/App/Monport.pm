@@ -1,5 +1,7 @@
 package App::Monport;
 use strict;
+use warnings;
+use IO::Socket;
 use List::Util qw(shuffle);
 
 our $VERSION = '1.01';
@@ -62,6 +64,30 @@ This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.
 
 =cut
+
+sub scan_ports {
+    my $host = shift;
+    my @open;
+    print "scanning $host: \n";
+    my $ports = default_ports();
+    for my $port (@$ports) {
+        my $socket = IO::Socket::INET->new(
+            PeerAddr => $host,
+            PeerPort => $port,
+            Proto    => 'tcp',
+            Type     => SOCK_STREAM,
+            Timeout  => 1,
+        );
+
+        if ($socket) {
+            push @open, $port;
+            shutdown( $socket, 2 );
+        }
+    }
+
+    return \@open;
+}
+
 
 sub default_ports {
     my %port_directory;
