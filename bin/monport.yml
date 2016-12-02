@@ -1,11 +1,11 @@
 ---
 alarm:
   - '80'
+  - '445'
+  - '22'
+  - '139'
+  - '8080'
 ---
-google.com:
-  - '80'
-  - '443'
+google.com: []
 ---
-host1.domain.com:
-  - '80'
-  - '443'
+host1.domain.com: []
