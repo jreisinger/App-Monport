@@ -3,11 +3,9 @@ use strict;
 use warnings;
 use YAML::Tiny;
 use File::Spec qw(catfile);
-use File::Basename qw(dirname);
 use App::Monport qw(scan_ports);
 
 my $conf_file = File::Spec->catfile( $ENV{HOME}, "monport.yml" );
-
 
 if (@ARGV) {
     my $yaml;
@@ -41,30 +39,3 @@ for my $hashref (@$yaml) {
         }
     }
 }
-
-
-
-=head1 NAME
-
-<program> - <One-line description of programs's purpose>
-
-=head1 SYNOPSIS
-
-monport [options] [IP ADDRESS(ES)|SUBNET]
-
-  options:
-    -h, -?, --help  brief help message
-
-=head1 DESCRIPTION
-
-A full description of the <program> and its features.
-
-May include numerous subsections (i.e., =head2, =head3, etc.).
-
-=head1 EXAMPLES
-
-Print out a short help message and exit:
-
-    <program> -h
-
-=cut
