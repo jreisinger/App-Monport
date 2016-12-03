@@ -66,6 +66,12 @@ the same terms as the Perl 5 programming language system itself.
 
 =cut
 
+=head2 scan_ports($host)
+
+Return an array reference containing list of ports open on $host.
+
+=cut
+
 sub scan_ports {
     my $host = shift;
 
@@ -80,6 +86,12 @@ sub scan_ports {
 
     return \@ports;
 }
+
+=head2 nmap_path()
+
+Return absolute path to nmap executable or die.
+
+=cut
 
 sub nmap_path {
     my @paths = qw(
