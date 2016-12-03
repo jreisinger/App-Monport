@@ -69,15 +69,27 @@ the same terms as the Perl 5 programming language system itself.
 sub scan_ports {
     my $host = shift;
 
-    my $np   = new Nmap::Parser;
+    my $np = new Nmap::Parser;
 
     #runs the nmap command with hosts and parses it automagically
-    $np->parsescan( '/usr/bin/nmap', '', $host );
+    my $nmap = nmap_path();
+    $np->parsescan( $nmap, '', $host );
 
     my ($h) = $np->all_hosts();
     my @ports = $h->tcp_ports(q(open));
 
     return \@ports;
+}
+
+sub nmap_path {
+    my @paths = qw(
+      /usr/bin/nmap
+      /usr/local/bin/nmap
+    );
+    for my $p (@paths) {
+        return $p if -x $p;
+    }
+    die "can't find exacutable nmap; searched @paths\n";
 }
 
 #sub scan_ports {
