@@ -72,7 +72,7 @@ sub scan_ports {
     my $np   = new Nmap::Parser;
 
     #runs the nmap command with hosts and parses it automagically
-    $np->parsescan( '/usr/local/bin/nmap', '', $host );
+    $np->parsescan( '/usr/bin/nmap', '', $host );
 
     my ($h) = $np->all_hosts();
     my @ports = $h->tcp_ports(q(open));
