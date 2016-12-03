@@ -4,23 +4,23 @@ use warnings;
 use YAML::Tiny;
 use File::Spec qw(catfile);
 use File::Basename qw(dirname);
+use App::Monport qw(scan_ports);
 
+my $conf_file = File::Spec->catfile( $ENV{HOME}, "monport.yml" );
 
-my $conf_file = File::Spec->catfile( dirname($0), "monport.yml" );
-
-my $yaml;
 
 if (@ARGV) {
+    my $yaml;
     die "'$conf_file' already exists: $!" if -e $conf_file;
     $yaml = YAML::Tiny->new();
     for my $host (@ARGV) {
         my $open_ports = scan_ports($host);
         push @$yaml, { $host => $open_ports };
-        $yaml->write('monport.yml');
+        $yaml->write($conf_file);
     }
 }
 
-$yaml = YAML::Tiny->read($conf_file);
+my $yaml = YAML::Tiny->read($conf_file);
 
 for my $hashref (@$yaml) {
     for my $host ( sort keys %$hashref ) {

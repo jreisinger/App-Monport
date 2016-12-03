@@ -4,6 +4,9 @@ use warnings;
 use IO::Socket;
 use List::Util qw(shuffle);
 use Nmap::Parser;
+use Exporter qw(import);
+
+our @EXPORT = qw(scan_ports);
 
 our $VERSION = '1.01';
 
