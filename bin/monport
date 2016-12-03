@@ -2,14 +2,24 @@
 use strict;
 use warnings;
 use YAML::Tiny;
-use File::Spec qw(catfile);
-use App::Monport qw(scan_ports);
+use File::Spec;
+use App::Monport;
+use Getopt::Long;
+use Pod::Usage;
 
-my $conf_file = File::Spec->catfile( $ENV{HOME}, "monport.yml" );
+# Command line options
+GetOptions(
+    "h|?|help" => \( my $help ),
+) or pod2usage(1);
+
+# Help
+pod2usage( -exitval => 0, -verbose => 2, -noperldoc => 1 ) if $help;
+
+my $conf_file = File::Spec->catfile( $ENV{HOME}, '.monport.yml' );
 
 if (@ARGV) {
     my $yaml;
-    die "'$conf_file' already exists: $!" if -e $conf_file;
+    die "'$conf_file' already exists: $!\n" if -e $conf_file;
     $yaml = YAML::Tiny->new();
     for my $host (@ARGV) {
         my $open_ports = scan_ports($host);
@@ -19,7 +29,6 @@ if (@ARGV) {
 }
 
 my $yaml = YAML::Tiny->read($conf_file);
-
 for my $hashref (@$yaml) {
     for my $host ( sort keys %$hashref ) {
 
@@ -39,3 +48,29 @@ for my $hashref (@$yaml) {
         }
     }
 }
+
+__END__
+
+=head1 NAME
+
+monport - keep an eye on network ports
+
+=head1 SYNOPSIS
+
+monport [options] [hosts]
+
+  options:
+    -h, -?, --help  brief help message
+
+=head1 DESCRIPTION
+
+Compare the open ports against an expected state defined in a configuration
+file. To create the configuration file run:
+
+    $ monport host1 host2
+
+To check the state of the ports:
+
+    $ monport 
+
+=cut
