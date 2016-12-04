@@ -1,9 +1,0 @@
-#!include_default
-^\.git
-^\.tidyallrc$
-^\.travis.yml$
-^NOTES.md$
-^twitter$
-^MYMETA\.yml$
-^MYMETA\.json$
-^App-Monport-[\.\d]+tar.gz

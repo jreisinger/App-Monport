@@ -1,5 +1,8 @@
 Revision history for App-Monport
 
+1.01    2016-12-04
+        Simplify the code base, remove non-core features.
+
 0.11    2016-11-18
         Add missing modules to MANIFEST file.
 

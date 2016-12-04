@@ -6,17 +6,42 @@ App::Monport - Monitor network ports for changes
 
 =head1 SYNOPSIS
 
- $ monport
+ $ monport localhost scanme.nmap.org  # generate the configuration file
+
+ $ monport  # compare against the configuration file
 
 =head1 DESCRIPTION
 
-Use this application to find out whether some new ports have been opened or
+Use this module to find out whether some new ports have been opened or
 existing ones have been closed. New open ports mean bigger attack surface and
 consequently higher security risk. On the other hand if a port gets closed it
 might indicate a problem with a network service.
 
 The application works by comparing the actual state of ports (open or closed)
 with the expected state defined in the configuration file.
+
+=head1 FUNCTIONS
+
+See F<bin/monport> for how to use these functions.
+
+=head2 create_config($conf_file, @hosts)
+
+Create configuration file F<$HOME/.monport.yml> containing hosts with
+corresponding open ports. This file will be used as the expected list of
+open ports in the consequent scans.
+
+=head2 compare_config($conf_file)
+
+Compare list of open ports defined in the F<$conf_file> with the current list
+of open ports. Print newly opened or closed ports.
+
+=head2 scan_ports($host)
+
+Return an array reference containing list of ports open on $host.
+
+=head2 nmap_path()
+
+Return absolute path to nmap executable or die.
 
 =head1 INSTALLATION
 
@@ -50,8 +75,9 @@ Jozef Reisinger, E<lt>reisinge@cpan.orgE<gt>
 
 =head1 COPYRIGHT AND LICENSE
 
-This software is copyright (c) 2015 by Jozef Reisinger.
+This software is copyright (c) 2015-2016 by Jozef Reisinger.
 
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.
 
+1;
