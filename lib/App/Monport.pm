@@ -6,7 +6,7 @@ use List::Util qw(shuffle);
 use Nmap::Parser;
 use Exporter qw(import);
 
-our @EXPORT = qw(scan_ports);
+our @EXPORT = qw(scan_ports create_config compare_config);
 
 our $VERSION = '1.01';
 
@@ -35,6 +35,60 @@ with the expected state defined in the configuration file.
 =head1 FUNCTIONS
 
 See F<bin/monport> for how to use these functions.
+
+=head2 create_config($conf_file, @hosts)
+
+Create configuration file F<$HOME/.monport.yml> containing hosts with
+corresponding open ports. This file will be used as the expected list of
+open ports in the consequent scans.
+
+=cut
+
+sub create_config {
+    my $conf_file = shift;
+    my @hosts     = @_;
+
+    my $yaml;
+    die "'$conf_file' already exists. You can remove it or edit it.\n"
+      if -e $conf_file;
+    $yaml = YAML::Tiny->new();
+    for my $host (@hosts) {
+        my $open_ports = scan_ports($host);
+        push @$yaml, { $host => $open_ports };
+        $yaml->write($conf_file);
+    }
+}
+
+=head2 compare_config($conf_file)
+
+Compare list of open ports defined in the F<$conf_file> with the current list
+of open ports. Print newly opened or closed ports.
+
+=cut
+
+sub compare_config {
+    my $conf_file = shift;
+
+    my $yaml = YAML::Tiny->read($conf_file);
+    for my $hashref (@$yaml) {
+        for my $host ( sort keys %$hashref ) {
+
+            print "--> scanning $host ...\n";
+            my $open = scan_ports($host);
+            my $expected_open = $hashref->{$host} // [];
+
+            for my $port ( sort @$open ) {
+                print "  $port is open\n"
+                  unless grep $port == $_, @$expected_open;
+            }
+
+            for my $port ( sort @$expected_open ) {
+                print "  $port is closed\n"
+                  unless grep $port == $_, @$open;
+            }
+        }
+    }
+}
 
 =head2 scan_ports($host)
 

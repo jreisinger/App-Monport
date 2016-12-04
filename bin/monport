@@ -8,45 +8,19 @@ use Getopt::Long;
 use Pod::Usage;
 
 # Command line options
-GetOptions(
-    "h|?|help" => \( my $help ),
-) or pod2usage(1);
+GetOptions( "h|?|help" => \( my $help ), )
+  or pod2usage(1);
 
 # Help
 pod2usage( -exitval => 0, -verbose => 2, -noperldoc => 1 ) if $help;
 
 my $conf_file = File::Spec->catfile( $ENV{HOME}, '.monport.yml' );
+my @hosts = @ARGV;
 
-if (@ARGV) {
-    my $yaml;
-    die "'$conf_file' already exists: $!\n" if -e $conf_file;
-    $yaml = YAML::Tiny->new();
-    for my $host (@ARGV) {
-        my $open_ports = scan_ports($host);
-        push @$yaml, { $host => $open_ports };
-        $yaml->write($conf_file);
-    }
-}
-
-my $yaml = YAML::Tiny->read($conf_file);
-for my $hashref (@$yaml) {
-    for my $host ( sort keys %$hashref ) {
-
-        print "--> scanning $host ...\n";
-        my $open = scan_ports($host);
-        my $expected_open = $hashref->{$host} // [];
-
-
-        for my $port ( sort @$open ) {
-            print "  $port is open\n"
-              unless grep $port == $_, @$expected_open;
-        }
-
-        for my $port ( sort @$expected_open ) {
-            print "  $port is closed\n"
-              unless grep $port == $_, @$open;
-        }
-    }
+if (@hosts) {
+    create_config( $conf_file, @hosts );
+} else {
+    compare_config($conf_file);
 }
 
 __END__
@@ -65,7 +39,7 @@ monport [options] [hosts]
 =head1 DESCRIPTION
 
 Compare the open ports against an expected state defined in a configuration
-file. To create the configuration file run:
+file. To create the configuration file (F<$HOME/.monport.yml>) run:
 
     $ monport host1 host2
 
