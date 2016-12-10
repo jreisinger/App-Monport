@@ -37,7 +37,7 @@ open ports in the consequent scans.
 Compare list of open ports defined in the F<$conf_file> with the current list
 of open ports. Print newly opened or closed ports.
 
-=head2 scan_ports($verbose, $host)
+=head2 scan_ports($host, $verbose)
 
 Return an array reference containing list of ports open on $host.
 

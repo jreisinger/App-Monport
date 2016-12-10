@@ -8,7 +8,7 @@ use Exporter qw(import);
 
 our @EXPORT = qw(scan_ports create_config compare_config);
 
-our $VERSION = '1.02';
+our $VERSION = '1.03';
 
 =for HTML <a href="https://travis-ci.org/jreisinger/App-Monport"><img src="https://travis-ci.org/jreisinger/App-Monport.svg?branch=master"></a>
 
@@ -82,15 +82,22 @@ sub compare_config {
             my $open = scan_ports($host, $verbose);
             my $expected_open = $hashref->{$host} // [];
 
+            my @report_open;
             for my $port ( sort @$open ) {
-                print "  $port is open\n"
+                push @report_open, $port
                   unless grep $port == $_, @$expected_open;
             }
 
+            my @report_closed;
             for my $port ( sort @$expected_open ) {
-                print "  $port is closed\n"
+                push @report_closed, $port
                   unless grep $port == $_, @$open;
             }
+
+            # print report
+            print "$host\n" if @report_open or @report_closed;
+            print "  $_ open\n" for @report_open;
+            print "  $_ closed\n" for @report_closed;
         }
     }
 }
