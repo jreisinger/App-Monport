@@ -95,7 +95,7 @@ sub compare_config {
     }
 }
 
-=head2 scan_ports($verbose, $host)
+=head2 scan_ports($host, $verbose)
 
 Return an array reference containing list of ports open on $host.
 
