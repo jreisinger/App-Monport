@@ -8,8 +8,10 @@ use Getopt::Long;
 use Pod::Usage;
 
 # Command line options
-GetOptions( "h|?|help" => \( my $help ), )
-  or pod2usage(1);
+GetOptions(
+    "h|?|help"  => \( my $help ),
+    "v|verbose" => \( my $verbose ),
+) or pod2usage(1);
 
 # Help
 pod2usage( -exitval => 0, -verbose => 2, -noperldoc => 1 ) if $help;
@@ -18,9 +20,16 @@ my $conf_file = File::Spec->catfile( $ENV{HOME}, '.monport.yml' );
 my @hosts = @ARGV;
 
 if (@hosts) {
-    create_config( $conf_file, @hosts );
+    create_config({
+        verbose   => $verbose,
+        conf_file => $conf_file,
+        host      => @hosts
+    });
 } else {
-    compare_config($conf_file);
+    compare_config({
+        verbose => $verbose,
+        conf_file => $conf_file
+    });
 }
 
 __END__
@@ -35,6 +44,7 @@ monport [options] [hosts]
 
   options:
     -h, -?, --help  brief help message
+    -v, --verbose   print what you are doing
 
 =head1 DESCRIPTION
 

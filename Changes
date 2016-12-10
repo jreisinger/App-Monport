@@ -1,5 +1,8 @@
 Revision history for App-Monport
 
+1.02    2016-12-10
+        Add --verbose option, small fixes.
+
 1.01    2016-12-04
         Simplify the code base, remove non-core features.
 

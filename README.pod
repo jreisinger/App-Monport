@@ -6,9 +6,11 @@ App::Monport - Monitor network ports for changes
 
 =head1 SYNOPSIS
 
- $ monport localhost scanme.nmap.org  # generate the configuration file
+ # generate the configuration file
+ $ monport localhost scanme.nmap.org
 
- $ monport  # compare against the configuration file
+ # compare against the configuration file
+ $ monport
 
 =head1 DESCRIPTION
 
@@ -35,7 +37,7 @@ open ports in the consequent scans.
 Compare list of open ports defined in the F<$conf_file> with the current list
 of open ports. Print newly opened or closed ports.
 
-=head2 scan_ports($host)
+=head2 scan_ports($verbose, $host)
 
 Return an array reference containing list of ports open on $host.
 

@@ -8,7 +8,7 @@ use Exporter qw(import);
 
 our @EXPORT = qw(scan_ports create_config compare_config);
 
-our $VERSION = '1.01';
+our $VERSION = '1.02';
 
 =for HTML <a href="https://travis-ci.org/jreisinger/App-Monport"><img src="https://travis-ci.org/jreisinger/App-Monport.svg?branch=master"></a>
 
@@ -18,9 +18,11 @@ App::Monport - Monitor network ports for changes
 
 =head1 SYNOPSIS
 
- $ monport localhost scanme.nmap.org  # generate the configuration file
+ # generate the configuration file
+ $ monport localhost scanme.nmap.org
 
- $ monport  # compare against the configuration file
+ # compare against the configuration file
+ $ monport
 
 =head1 DESCRIPTION
 
@@ -45,15 +47,17 @@ open ports in the consequent scans.
 =cut
 
 sub create_config {
-    my $conf_file = shift;
-    my @hosts     = @_;
+    my $args = shift;
+    my $conf_file = $args->{conf_file};
+    my @hosts     = @{$args->{hosts}};
+    my $verbose   = $args->{verbose};
 
     my $yaml;
     die "'$conf_file' already exists. You can remove it or edit it.\n"
       if -e $conf_file;
     $yaml = YAML::Tiny->new();
     for my $host (@hosts) {
-        my $open_ports = scan_ports($host);
+        my $open_ports = scan_ports($host, $verbose);
         push @$yaml, { $host => $open_ports };
         $yaml->write($conf_file);
     }
@@ -67,14 +71,15 @@ of open ports. Print newly opened or closed ports.
 =cut
 
 sub compare_config {
-    my $conf_file = shift;
+    my $args = shift;
+    my $conf_file = $args->{conf_file};
+    my $verbose   = $args->{verbose};
 
     my $yaml = YAML::Tiny->read($conf_file);
     for my $hashref (@$yaml) {
         for my $host ( sort keys %$hashref ) {
 
-            print "--> scanning $host ...\n";
-            my $open = scan_ports($host);
+            my $open = scan_ports($host, $verbose);
             my $expected_open = $hashref->{$host} // [];
 
             for my $port ( sort @$open ) {
@@ -90,15 +95,16 @@ sub compare_config {
     }
 }
 
-=head2 scan_ports($host)
+=head2 scan_ports($verbose, $host)
 
 Return an array reference containing list of ports open on $host.
 
 =cut
 
 sub scan_ports {
-    my $host = shift;
+    my ($host, $verbose) = @_;
 
+    print "--> scanning $host ...\n" if $verbose;
     my $np = new Nmap::Parser;
 
     #runs the nmap command with hosts and parses it automagically
@@ -187,5 +193,7 @@ This software is copyright (c) 2015-2016 by Jozef Reisinger.
 
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.
+
+=cut
 
 1;
