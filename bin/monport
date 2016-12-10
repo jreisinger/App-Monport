@@ -1,7 +1,6 @@
 #!/usr/bin/perl
 use strict;
 use warnings;
-use YAML::Tiny;
 use File::Spec;
 use App::Monport;
 use Getopt::Long;

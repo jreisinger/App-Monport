@@ -5,10 +5,11 @@ use IO::Socket;
 use List::Util qw(shuffle);
 use Nmap::Parser;
 use Exporter qw(import);
+use YAML::Tiny;
 
 our @EXPORT = qw(scan_ports create_config compare_config);
 
-our $VERSION = '1.04';
+our $VERSION = '1.05';
 
 =for HTML <a href="https://travis-ci.org/jreisinger/App-Monport"><img src="https://travis-ci.org/jreisinger/App-Monport.svg?branch=master"></a>
 

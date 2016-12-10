@@ -15,7 +15,8 @@ my $builder = Module::Build->new(
 
         #'ABC'              => 1.6,
         #'Foo::Bar::Module' => 5.0401,
-        'YAML'           => 0,
+        'YAML::Tiny'     => 0,
+        'Nmap::Parser'   => 0,
     },
     add_to_cleanup     => ['App-Monport-*'],
     create_makefile_pl => 'traditional',
