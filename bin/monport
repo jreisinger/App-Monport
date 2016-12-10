@@ -20,16 +20,20 @@ my $conf_file = File::Spec->catfile( $ENV{HOME}, '.monport.yml' );
 my @hosts = @ARGV;
 
 if (@hosts) {
-    create_config({
-        verbose   => $verbose,
-        conf_file => $conf_file,
-        host      => @hosts
-    });
+    create_config(
+        {
+            verbose   => $verbose,
+            conf_file => $conf_file,
+            hosts     => [@hosts],
+        }
+    );
 } else {
-    compare_config({
-        verbose => $verbose,
-        conf_file => $conf_file
-    });
+    compare_config(
+        {
+            verbose   => $verbose,
+            conf_file => $conf_file
+        }
+    );
 }
 
 __END__
