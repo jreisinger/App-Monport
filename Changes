@@ -1,5 +1,8 @@
 Revision history for App-Monport
 
+1.06    2016-12-13
+        Skip scanning tests if nmap executable not found (thanks Slaven).
+
 1.05    2016-12-10
         Undeclared dependency Nmap::Parser #7.
 
