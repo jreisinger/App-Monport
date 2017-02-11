@@ -9,7 +9,7 @@ use YAML::Tiny;
 
 our @EXPORT = qw(scan_ports create_config compare_config nmap_path);
 
-our $VERSION = '1.06';
+our $VERSION = '1.07';
 
 =for HTML <a href="https://travis-ci.org/jreisinger/App-Monport"><img src="https://travis-ci.org/jreisinger/App-Monport.svg?branch=master"></a>
 
@@ -21,6 +21,9 @@ App::Monport - Monitor network ports for changes
 
  # generate the configuration file
  $ monport localhost scanme.nmap.org
+
+ # review/edit the configuration
+ $ vi $HOME/.monport.yml
 
  # compare against the configuration file
  $ monport

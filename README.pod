@@ -9,6 +9,9 @@ App::Monport - Monitor network ports for changes
  # generate the configuration file
  $ monport localhost scanme.nmap.org
 
+ # review/edit the configuration
+ $ vi $HOME/.monport.yml
+
  # compare against the configuration file
  $ monport
 

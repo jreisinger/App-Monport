@@ -1,5 +1,8 @@
 Revision history for App-Monport
 
+1.07    2017-02-11
+        Improve docs.
+
 1.06    2016-12-13
         Skip scanning tests if nmap executable not found (thanks Slaven).
 
