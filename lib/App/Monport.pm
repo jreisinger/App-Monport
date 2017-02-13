@@ -1,5 +1,6 @@
 # ABSTRACT: Monitor network ports for changes
 package App::Monport;
+
 use strict;
 use warnings;
 use IO::Socket;
@@ -9,8 +10,6 @@ use Exporter qw(import);
 use YAML::Tiny;
 
 our @EXPORT = qw(scan_ports create_config compare_config nmap_path);
-
-our $VERSION = '1.07';
 
 =for HTML <a href="https://travis-ci.org/jreisinger/App-Monport"><img src="https://travis-ci.org/jreisinger/App-Monport.svg?branch=master"></a>
 
