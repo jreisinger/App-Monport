@@ -1,3 +1,4 @@
+# ABSTRACT: Monitor network ports for changes
 package App::Monport;
 use strict;
 use warnings;

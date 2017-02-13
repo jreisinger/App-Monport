@@ -1,7 +1,0 @@
-[PerlTidy]
-select = {lib,t}/**/*.{pl,pm,t}
-select = Build.PL
-
-[PerlCritic]
-select = lib/**/*.pm
-argv = -severity 5
