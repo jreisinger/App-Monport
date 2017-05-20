@@ -1,5 +1,8 @@
 Revision history for App-Monport
 
+1.11    2017-05-20
+        Treat all hosts as online -- skip host discovery (-Pn)
+
 1.10    2017-03-17
         Started to use Dist::Zilla and missed couple of releases in this file
         :-).
